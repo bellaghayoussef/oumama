@@ -5,6 +5,12 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AgencyController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\Admin\ProcedureController;
+use App\Http\Controllers\Admin\EtapController;
+use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\FormulerController;
+use App\Http\Controllers\Admin\VariableController;
+use App\Http\Controllers\Admin\RepenceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,4 +31,22 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
 
     // Users Management
     Route::resource('users', UserController::class);
+
+    // Procedures Management
+    Route::resource('procedures', ProcedureController::class);
+
+    // Etaps Management
+    Route::resource('etaps', EtapController::class);
+
+    // Tasks Management
+    Route::resource('tasks', TaskController::class);
+
+    // Formulers Management
+    Route::resource('formulers', FormulerController::class);
+
+    // Variables Management
+    Route::resource('variables', VariableController::class);
+
+    // Repences Management
+    Route::resource('repences', RepenceController::class);
 });

@@ -26,6 +26,24 @@
                 <a href="{{ route('admin.users.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.users.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-users mr-2"></i> Gérer les Utilisateurs
                 </a>
+                <a href="{{ route('admin.procedures.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.procedures.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-list mr-2"></i> Gérer les Procédures
+                </a>
+                <a href="{{ route('admin.etaps.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.etaps.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-step-forward mr-2"></i> Gérer les Étapes
+                </a>
+                <a href="{{ route('admin.tasks.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.tasks.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-tasks mr-2"></i> Gérer les Tâches
+                </a>
+                <a href="{{ route('admin.formulers.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.formulers.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-file-alt mr-2"></i> Gérer les Formulaires
+                </a>
+                <a href="{{ route('admin.variables.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.variables.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-code mr-2"></i> Gérer les Variables
+                </a>
+                <a href="{{ route('admin.repences.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.repences.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-reply mr-2"></i> Gérer les Réponses
+                </a>
             </nav>
             <div class="px-6 py-4 border-t border-gray-700">
                 <form action="{{ route('admin.logout') }}" method="POST">
