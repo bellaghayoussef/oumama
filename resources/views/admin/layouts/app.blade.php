@@ -26,6 +26,10 @@
                 <a href="{{ route('admin.users.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.users.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-users mr-2"></i> Gérer les Utilisateurs
                 </a>
+                <a href="{{ route('admin.dossiers.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.dossiers.*') ? 'bg-gray-700' : '' }}">
+                    <i class="fas fa-reply mr-2"></i> Gérer les Dossiers
+                </a>
+                
                 <a href="{{ route('admin.procedures.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.procedures.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-list mr-2"></i> Gérer les Procédures
                 </a>
@@ -44,6 +48,8 @@
                 <a href="{{ route('admin.repences.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.repences.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-reply mr-2"></i> Gérer les Réponses
                 </a>
+
+              
             </nav>
             <div class="px-6 py-4 border-t border-gray-700">
                 <form action="{{ route('admin.logout') }}" method="POST">

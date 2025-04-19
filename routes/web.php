@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\FormulerController;
 use App\Http\Controllers\Admin\VariableController;
 use App\Http\Controllers\Admin\RepenceController;
+use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\DossierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,9 +46,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
     // Formulers Management
     Route::resource('formulers', FormulerController::class);
 
+    // Questions Management
+    Route::resource('questions', QuestionController::class);
+
     // Variables Management
     Route::resource('variables', VariableController::class);
 
     // Repences Management
     Route::resource('repences', RepenceController::class);
+
+    // Dossiers Management
+    Route::resource('dossiers', DossierController::class);
 });
