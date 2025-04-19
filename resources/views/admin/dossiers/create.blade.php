@@ -16,7 +16,7 @@
                     <option value="">Sélectionner une procédure</option>
                     @foreach($procedures as $procedure)
                         <option value="{{ $procedure->id }}" {{ old('procedure_id') == $procedure->id ? 'selected' : '' }}>
-                            {{ $procedure->title }}
+                            {{ $procedure->name }}
                         </option>
                     @endforeach
                 </select>
@@ -64,7 +64,7 @@
                     <option value="">Sélectionner une tâche</option>
                     @foreach($tasks as $task)
                         <option value="{{ $task->id }}" {{ old('task_id') == $task->id ? 'selected' : '' }}>
-                            {{ $task->title }}
+                                {{ $task->name }}
                         </option>
                     @endforeach
                 </select>

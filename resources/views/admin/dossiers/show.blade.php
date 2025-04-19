@@ -12,7 +12,7 @@
             <div class="space-y-4">
                 <div>
                     <p class="text-sm font-medium text-gray-500">Procédure</p>
-                    <p class="mt-1 text-gray-900">{{ $dossier->procedure->title }}</p>
+                    <p class="mt-1 text-gray-900">{{ $dossier->procedure->name }}</p>
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Agence</p>
@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Tâche</p>
-                    <p class="mt-1 text-gray-900">{{ $dossier->task->title }}</p>
+                    <p class="mt-1 text-gray-900">{{ $dossier->task->name }}</p>
                 </div>
                 <div>
                     <p class="text-sm font-medium text-gray-500">Statut</p>
