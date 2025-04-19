@@ -23,16 +23,8 @@
                    placeholder="Rechercher une agence..."
                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
-        <div class="w-40">
-            <select name="status"
-                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="">Tous les status</option>
-                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Actif</option>
-                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactif</option>
-            </select>
-        </div>
         <button type="submit" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
-            <i class="fas fa-search mr-2"></i> Filtrer
+            <i class="fas fa-search mr-2"></i> Rechercher
         </button>
     </form>
 </div>
@@ -43,26 +35,22 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead>
                 <tr>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ville</th>
-                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pays</th>
-                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Téléphone</th>
+                    <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Adresse</th>
                     <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($agencies as $agency)
                 <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $agency->id }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $agency->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $agency->email }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $agency->city }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $agency->country }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $agency->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                            {{ $agency->is_active ? 'Active' : 'Inactive' }}
-                        </span>
-                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $agency->phone }}</td>
+                    <td class="px-6 py-4">{{ Str::limit($agency->address, 50) }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                         <div class="flex space-x-2">
                             <a href="{{ route('admin.agencies.edit', $agency) }}" class="text-blue-500 hover:text-blue-700">

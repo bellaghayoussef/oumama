@@ -13,6 +13,10 @@ use App\Http\Controllers\Admin\VariableController;
 use App\Http\Controllers\Admin\RepenceController;
 use App\Http\Controllers\Admin\QuestionController;
 use App\Http\Controllers\Admin\DossierController;
+use App\Http\Controllers\Agency\AuthController as AgencyAuthController;
+use App\Http\Controllers\Agency\DashboardController as AgencyDashboardController;
+use App\Http\Controllers\Agency\UserController as AgencyUserController;
+use App\Http\Controllers\Agency\DossierController as AgencyDossierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,4 +61,16 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
 
     // Dossiers Management
     Route::resource('dossiers', DossierController::class);
+});
+
+// Agency Authentication Routes
+Route::get('/agency/login', [AgencyAuthController::class, 'showLoginForm'])->name('agency.login');
+Route::post('/agency/login', [AgencyAuthController::class, 'login']);
+Route::post('/agency/logout', [AgencyAuthController::class, 'logout'])->name('agency.logout');
+
+// Agency Protected Routes
+Route::middleware(['auth:agency'])->prefix('agency')->name('agency.')->group(function () {
+    Route::get('/', [AgencyDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('users', AgencyUserController::class);
+    Route::resource('dossiers', AgencyDossierController::class);
 });

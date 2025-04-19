@@ -50,6 +50,11 @@ return [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
+
+        'agency' => [
+            'driver' => 'session',
+            'provider' => 'agencies',
+        ],
     ],
 
     /*
@@ -78,6 +83,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+            ],
+
+        'agencies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Agency::class,
         ],
 
         // 'users' => [
