@@ -31,22 +31,6 @@ use App\Http\Controllers\Api\DosesController;
 
 
 use App\Http\Controllers\API\AuthController;
-Route::group(['prefix' => 'api'], function () {
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('login', [AuthController::class, 'login']);
-    
-    Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('logout', [AuthController::class, 'logout']);
-        Route::post('refresh', [AuthController::class, 'refresh']);
-        Route::get('profile', [AuthController::class, 'profile']);
-    });
-
-    Route::get('/dosess', [DosesController::class, 'indexs']);
-    
-Route::middleware('jwt.auth')->group(function () {
-    Route::get('/doses', [DosesController::class, 'index']);
-});
-});
 
 
 

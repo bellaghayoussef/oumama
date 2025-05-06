@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\DosesController;
 
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return response()->json(auth()->user());
+});
 // Admin Authentication Routes
 Route::post('/admin/login', [AdminAuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -31,7 +36,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/admin/agencies/{agency}/clients', [DashboardController::class, 'getAgencyClients']);
 });
 
-Route::group(['prefix' => 'auth'], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
     
@@ -40,9 +44,10 @@ Route::group(['prefix' => 'auth'], function () {
         Route::post('refresh', [AuthController::class, 'refresh']);
         Route::get('profile', [AuthController::class, 'profile']);
     });
-});
 
-Route::prefix('api')->group(function () {
+
+
+// Agency Protected Routes
+Route::middleware(['auth:api'])->group(function () {
     Route::get('/doses', [DosesController::class, 'index']);
-    Route::post('/doses', [DosesController::class, 'store']);
 });
