@@ -14,7 +14,8 @@ class Dossier extends Model
         'agency_id',
         'user_id',
         'task_id',
-        'status'
+        'status',
+        'signature',
     ];
 
     public function procedure()
@@ -41,4 +42,7 @@ class Dossier extends Model
     {
         return $this->hasMany(Repence::class);
     }
+
+             
+
 } 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('task_id')->nullable()->constrained()->onDelete('set null');
             $table->enum('status', ['en_cours', 'en_attente', 'termine', 'rejete'])->default('en_cours');
+              $table->string('signature')->nullable();
             $table->timestamps();
         });
     }
@@ -29,4 +30,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('dossiers');
     }
-}; 
+};

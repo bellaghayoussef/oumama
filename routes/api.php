@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\Auth\AgencyAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\Api\DosesController;
+use App\Http\Controllers\Api\DossierController;
 
 
 
@@ -49,5 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Agency Protected Routes
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/doses', [DosesController::class, 'index']);
+    Route::get('/doses', [DossierController::class, 'index']);
+    Route::get('/doses/{id}', [DossierController::class, 'show']);
+    Route::post('/doses/{id}/signature', [DossierController::class, 'saveSignature']);
 });

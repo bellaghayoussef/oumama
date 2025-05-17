@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Dossier;
 use Illuminate\Support\Facades\Auth;
-
-class DosesController extends Controller
+class DossierController extends Controller
 {
     public function index()
     {
@@ -26,7 +27,7 @@ class DosesController extends Controller
     {
         $user = auth()->user();
       
-        $doses = Dossier::with('user')->find($id);
+        $doses = Dossier::with('user','procedure')->find($id);
 
         return response()->json([
             'status' => 'success',
@@ -63,14 +64,14 @@ class DosesController extends Controller
 
         // Update the dose with signature path
         $dose->update([
-            'signature_path' => 'signatures/' . $filename
+            'signature' => 'signatures/' . $filename
         ]);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Signature saved successfully',
             'data' => [
-                'signature_path' => $dose->signature_path
+                'signature_path' => $dose->signature
             ]
         ]);
 
