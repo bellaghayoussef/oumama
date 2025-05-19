@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\UserCreated;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -34,10 +36,14 @@ class UserController extends Controller
             'address' => 'required|string|max:255',
         ]);
 
+        $plainPassword = $request->password;
+
         $user = new User($request->all());
         $user->agency_id = Auth::guard('agency')->id();
         $user->password = bcrypt($request->password);
         $user->save();
+
+        Mail::to($user->email)->send(new UserCreated($user, $plainPassword));
 
         return redirect()->route('agency.users.index')
             ->with('success', 'Utilisateur créé avec succès.');
@@ -58,7 +64,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
-        
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -87,4 +93,4 @@ class UserController extends Controller
         return redirect()->route('agency.users.index')
             ->with('success', 'Utilisateur supprimé avec succès.');
     }
-} 
+}

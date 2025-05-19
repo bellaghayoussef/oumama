@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Agency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\UserCreated;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -55,10 +57,12 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'agency_id' => 'nullable|exists:agencies,id',
         ]);
+        $plainPassword = $validated['password'];
 
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
+       $user =  User::create($validated);
+        Mail::to($user->email)->send(new UserCreated($user,  $plainPassword));
 
         return redirect()->route('admin.users.index')
             ->with('success', 'Utilisateur créé avec succès.');
