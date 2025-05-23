@@ -10,30 +10,23 @@ class Repence extends Model
     use HasFactory;
 
     protected $fillable = [
-        'variable_id',
-        'user_id',
-        'agency_id',
-        'admin_id',
-        'value'
+        'dossier_id',
+        'formuler_id',
+        'status',
+        'answers'
     ];
 
-    public function variable()
+    protected $casts = [
+        'answers' => 'array'
+    ];
+
+    public function dossier()
     {
-        return $this->belongsTo(Variable::class);
+        return $this->belongsTo(Dossier::class);
     }
 
-    public function user()
+    public function formuler()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Formuler::class);
     }
-
-    public function agency()
-    {
-        return $this->belongsTo(Agency::class);
-    }
-
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class);
-    }
-} 
+}

@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - @yield('title')</title>
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
 <body class="bg-gray-100">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
@@ -29,7 +32,7 @@
                 <a href="{{ route('admin.dossiers.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.dossiers.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-reply mr-2"></i> Gérer les Dossiers
                 </a>
-                
+
                 <a href="{{ route('admin.procedures.index') }}" class="block px-6 py-2 hover:bg-gray-700 {{ request()->routeIs('admin.procedures.*') ? 'bg-gray-700' : '' }}">
                     <i class="fas fa-list mr-2"></i> Gérer les Procédures
                 </a>
@@ -49,7 +52,7 @@
                     <i class="fas fa-reply mr-2"></i> Gérer les Réponses
                 </a>
 
-              
+
             </nav>
             <div class="px-6 py-4 border-t border-gray-700">
                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -97,5 +100,7 @@
 
     <!-- Alpine.js -->
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoU8wE6vU8vwxH8333z6fzlA0Bt4Zj+EkZ1V7lGyzR3Oe9C" crossorigin="anonymous"></script>
+
 </body>
 </html>

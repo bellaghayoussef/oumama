@@ -21,15 +21,13 @@ class Formuler extends Model
 
     public function variables()
     {
-        return $this->belongsToMany(Variable::class, 'formuler_variable')
-            ->withPivot('order')
-            ->orderBy('order');
+        return $this->hasMany(Variable::class, 'formuler_id');
     }
 
-    public function questions()
+
+
+    public function repences()
     {
-        return $this->belongsToMany(Question::class, 'formuler_question')
-            ->withPivot('order')
-            ->orderBy('order');
+        return $this->hasMany(Repence::class);
     }
-} 
+}

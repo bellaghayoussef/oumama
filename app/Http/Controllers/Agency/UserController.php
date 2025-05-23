@@ -51,21 +51,17 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $this->authorize('view', $user);
         return view('agency.users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
         return view('agency.users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
-        $this->authorize('update', $user);
-
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'phone' => 'required|string|max:20',
@@ -87,7 +83,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $this->authorize('delete', $user);
         $user->delete();
 
         return redirect()->route('agency.users.index')

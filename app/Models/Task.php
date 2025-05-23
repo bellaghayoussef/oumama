@@ -14,11 +14,22 @@ class Task extends Model
         'description',
         'etap_id',
         'intervenant',
-        'delait'
+        'delait',
+        'order'
     ];
 
     public function etap()
     {
         return $this->belongsTo(Etap::class);
+    }
+
+    public function formulers()
+    {
+        return $this->hasMany(Formuler::class);
+    }
+
+    public function dossiers()
+    {
+        return $this->hasMany(Dossier::class);
     }
 }

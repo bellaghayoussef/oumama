@@ -79,6 +79,13 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
 
     // Dossiers Management
     Route::resource('dossiers', DossierController::class);
+
+    // Admin Dossier Response Routes
+    Route::get('/dossiers/{dossier}/responses/create', [App\Http\Controllers\Admin\DossierController::class, 'createResponse'])->name('dossiers.responses.create');
+    Route::post('/dossiers/{dossier}/responses', [App\Http\Controllers\Admin\DossierController::class, 'storeResponse'])->name('dossiers.responses.store');
+    Route::get('/dossiers/{dossier}/responses/{response}', [App\Http\Controllers\Admin\DossierController::class, 'showResponse'])->name('dossiers.responses.show');
+    Route::get('/dossiers/{dossier}/responses/{response}/edit', [App\Http\Controllers\Admin\DossierController::class, 'editResponse'])->name('dossiers.responses.edit');
+    Route::put('/dossiers/{dossier}/responses/{response}', [App\Http\Controllers\Admin\DossierController::class, 'updateResponse'])->name('dossiers.responses.update');
 });
 
 // Agency Authentication Routes
@@ -91,4 +98,16 @@ Route::middleware(['auth:agency'])->prefix('agency')->name('agency.')->group(fun
     Route::get('/', [AgencyDashboardController::class, 'index'])->name('dashboard');
     Route::resource('users', AgencyUserController::class);
     Route::resource('dossiers', AgencyDossierController::class);
+
+    // Form Response Routes
+    Route::get('/dossiers/{dossier}/responses/create', [AgencyDossierController::class, 'createResponse'])
+        ->name('dossiers.responses.create');
+    Route::post('/dossiers/{dossier}/responses', [AgencyDossierController::class, 'storeResponse'])
+        ->name('dossiers.responses.store');
+    Route::get('/dossiers/{dossier}/responses/{response}/edit', [AgencyDossierController::class, 'editResponse'])
+        ->name('dossiers.responses.edit');
+    Route::put('/dossiers/{dossier}/responses/{response}', [AgencyDossierController::class, 'updateResponse'])
+        ->name('dossiers.responses.update');
+    Route::get('/dossiers/{dossier}/responses/{response}', [AgencyDossierController::class, 'showResponse'])
+        ->name('dossiers.responses.show');
 });

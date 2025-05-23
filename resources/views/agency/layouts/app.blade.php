@@ -4,32 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - Agence</title>
+
+    <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <div class="w-64 bg-white shadow-md">
+        <div class="bg-gray-900 text-white w-64 py-6 flex flex-col">
             <div class="p-4">
-                <h1 class="text-xl font-semibold text-gray-800">Agence</h1>
+                <h1 class="text-xl font-semibold text-white">Agence</h1>
             </div>
             <nav class="mt-5">
-                <a href="{{ route('agency.dashboard') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <a href="{{ route('agency.dashboard') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Tableau de Bord
                 </a>
-                <a href="{{ route('agency.dossiers.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <a href="{{ route('agency.dossiers.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
                     <i class="fas fa-folder mr-3"></i>
                     Dossiers
                 </a>
-                <a href="{{ route('agency.users.index') }}" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <a href="{{ route('agency.users.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
                     <i class="fas fa-users mr-3"></i>
                     Utilisateurs
                 </a>
                 <form action="{{ route('agency.logout') }}" method="POST" class="mt-5">
                     @csrf
-                    <button type="submit" class="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <button type="submit" class="flex items-center w-full px-4 py-2 text-white hover:bg-yellow-500">
                         <i class="fas fa-sign-out-alt mr-3"></i>
                         Déconnexion
                     </button>
@@ -49,36 +56,14 @@
             <!-- Content -->
             <main class="p-6">
                 @if (session('success'))
-                    <div class="mb-4 rounded-md bg-green-50 p-4">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-green-800">
-                                    {{ session('success') }}
-                                </p>
-                            </div>
-                        </div>
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
                 @endif
 
                 @if (session('error'))
-                    <div class="mb-4 rounded-md bg-red-50 p-4">
-                        <div class="flex">
-                            <div class="flex-shrink-0">
-                                <svg class="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-red-800">
-                                    {{ session('error') }}
-                                </p>
-                            </div>
-                        </div>
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
                     </div>
                 @endif
 
@@ -86,5 +71,8 @@
             </main>
         </div>
     </div>
+
+    <!-- Bootstrap JS Bundle (with Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoU8wE6vU8vwxH8333z6fzlA0Bt4Zj+EkZ1V7lGyzR3Oe9C" crossorigin="anonymous"></script>
 </body>
 </html>
