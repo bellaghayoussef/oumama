@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\DossierCreated;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Admin;
+use App\Mail\FormCompleted;
+use App\Mail\DossierCompleted;
 
 class DossierController extends Controller
 {
@@ -257,29 +259,29 @@ class DossierController extends Controller
             // Get admin user
             $admin = Admin::first();
 
+            $emailData = [
+                'dossier' => $dossier,
+                'form' => $form,
+                'nextTask' => $nextTask,
+                'agency' => $dossier->agency,
+                'user' => $dossier->user
+            ];
+
             if ($admin) {
-                // Send email to admin
-                Mail::to($admin->email)->send(new \App\Mail\FormCompleted([
-                    'dossier' => $dossier,
-                    'form' => $form,
-                    'nextTask' => $nextTask,
-                    'agency' => $dossier->agency,
-                    'user' => $dossier->user
+                // Send email to admin using container
+                Mail::to($admin->email)->send(app()->make(FormCompleted::class, [
+                    'data' => $emailData
                 ]));
             }
 
-            // Send email to dossier user
+            // Send email to dossier user using container
             if ($dossier->user && $dossier->user->email) {
-                Mail::to($dossier->user->email)->send(new \App\Mail\FormCompleted([
-                    'dossier' => $dossier,
-                    'form' => $form,
-                    'nextTask' => $nextTask,
-                    'agency' => $dossier->agency,
-                    'user' => $dossier->user
+                Mail::to($dossier->user->email)->send(app()->make(FormCompleted::class, [
+                    'data' => $emailData
                 ]));
             }
         } catch (\Exception $e) {
-            \Log::error('Error sending form completion emails: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Error sending form completion emails: ' . $e->getMessage());
         }
     }
 
@@ -292,27 +294,28 @@ class DossierController extends Controller
             // Get admin user
             $admin = Admin::first();
 
+            $emailData = [
+                'dossier' => $dossier,
+                'form' => $form,
+                'agency' => $dossier->agency,
+                'user' => $dossier->user
+            ];
+
             if ($admin) {
-                // Send email to admin
-                Mail::to($admin->email)->send(new \App\Mail\DossierCompleted([
-                    'dossier' => $dossier,
-                    'form' => $form,
-                    'agency' => $dossier->agency,
-                    'user' => $dossier->user
+                // Send email to admin using container
+                Mail::to($admin->email)->send(app()->make(DossierCompleted::class, [
+                    'data' => $emailData
                 ]));
             }
 
-            // Send email to dossier user
+            // Send email to dossier user using container
             if ($dossier->user && $dossier->user->email) {
-                Mail::to($dossier->user->email)->send(new \App\Mail\DossierCompleted([
-                    'dossier' => $dossier,
-                    'form' => $form,
-                    'agency' => $dossier->agency,
-                    'user' => $dossier->user
+                Mail::to($dossier->user->email)->send(app()->make(DossierCompleted::class, [
+                    'data' => $emailData
                 ]));
             }
         } catch (\Exception $e) {
-            \Log::error('Error sending dossier completion emails: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Error sending dossier completion emails: ' . $e->getMessage());
         }
     }
 

@@ -1,5 +1,13 @@
 <?php
 
+use Illuminate\Support\ServiceProvider;
+use App\Providers\AppServiceProvider;
+use App\Providers\AuthServiceProvider;
+use App\Providers\EventServiceProvider;
+use App\Providers\RouteServiceProvider;
+use App\Providers\PdfServiceProvider;
+use Barryvdh\DomPDF\ServiceProvider as DomPDFServiceProvider;
+
 return [
 
     /*
@@ -122,5 +130,22 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        /*
+         * Package Service Providers...
+         */
+        DomPDFServiceProvider::class,
+
+        /*
+         * Application Service Providers...
+         */
+        AppServiceProvider::class,
+        AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        EventServiceProvider::class,
+        RouteServiceProvider::class,
+        PdfServiceProvider::class,
+    ])->toArray(),
 
 ];
