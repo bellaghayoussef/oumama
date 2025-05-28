@@ -84,7 +84,7 @@
 
             
             <div>
-                <label for="order" class="block text-sm font-medium text-gray-700">Délai (en jours)</label>
+                <label for="order" class="block text-sm font-medium text-gray-700">order</label>
                 <input type="number"
                        name="order"
                        id="order"
