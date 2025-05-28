@@ -1,11 +1,11 @@
-@extends('agency.layouts.auth') 
+@extends('agency.layouts.auth')
 
 @section('title', 'Connexion')
 @section('header', 'Connexion')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
+<div class="min-h-screen flex items-center justify-center bg-blue-600 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 py-12 px-4 bg-gray-100 rounded-lg shadow-md">
         <div>
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 Connexion Agence

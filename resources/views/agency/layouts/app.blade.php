@@ -17,26 +17,26 @@
 <body class="bg-gray-100">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <div class="bg-gray-900 text-white w-64 py-6 flex flex-col">
+        <div class="bg-blue-900 text-white w-64 py-6 flex flex-col">
             <div class="p-4">
                 <h1 class="text-xl font-semibold text-white">Agence</h1>
             </div>
             <nav class="mt-5">
-                <a href="{{ route('agency.dashboard') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
+                <a href="{{ route('agency.dashboard') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500 rounded-md text-decoration: blink; {{ request()->routeIs('agency.dashboard') ? 'bg-yellow-500' : '' }}"  style="border-radius: 32px;margin: 9px;text-decoration: blink;">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Tableau de Bord
                 </a>
-                <a href="{{ route('agency.dossiers.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
+                <a href="{{ route('agency.dossiers.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500 rounded-md text-decoration: blink; {{ request()->routeIs('agency.dossiers.*') ? 'bg-yellow-500' : '' }}"  style="border-radius: 32px;margin: 9px;text-decoration: blink;">
                     <i class="fas fa-folder mr-3"></i>
                     Dossiers
                 </a>
-                <a href="{{ route('agency.users.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500">
+                <a href="{{ route('agency.users.index') }}" class="flex items-center px-4 py-2 text-white hover:bg-yellow-500 rounded-md text-decoration: blink; {{ request()->routeIs('agency.users.*') ? 'bg-yellow-500' : '' }}"  style="border-radius: 32px;margin: 9px;text-decoration: blink;">
                     <i class="fas fa-users mr-3"></i>
                     Utilisateurs
                 </a>
                 <form action="{{ route('agency.logout') }}" method="POST" class="mt-5">
                     @csrf
-                    <button type="submit" class="flex items-center w-full px-4 py-2 text-white hover:bg-yellow-500">
+                    <button type="submit" class="flex items-center w-full px-4 py-2 text-white hover:bg-yellow-500 rounded-md text-decoration: blink; {{ request()->routeIs('agency.logout') ? 'bg-yellow-500' : '' }}">
                         <i class="fas fa-sign-out-alt mr-3"></i>
                         Déconnexion
                     </button>
