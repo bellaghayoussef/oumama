@@ -81,6 +81,22 @@
                 @enderror
             </div>
 
+
+            
+            <div>
+                <label for="order" class="block text-sm font-medium text-gray-700">Délai (en jours)</label>
+                <input type="number"
+                       name="order"
+                       id="order"
+                       value="{{ old('order', $task->order) }}"
+                       min="1"
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                       required>
+                @error('order')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="flex justify-end space-x-4">
                 <a href="{{ route('admin.tasks.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
                     Annuler
