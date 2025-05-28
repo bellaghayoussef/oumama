@@ -38,7 +38,7 @@ class TaskController extends Controller
             'etap_id' => 'required|exists:etaps,id',
             'intervenant' => 'required|in:admin,agence,user',
             'delait' => 'required|integer|min:1',
-            'order' => 'requird'
+            'order' => 'required'
         ]);
 
         Task::create($request->all());
@@ -75,7 +75,7 @@ class TaskController extends Controller
             'etap_id' => 'required|exists:etaps,id',
             'intervenant' => 'required|in:admin,agence,user',
             'delait' => 'required|integer|min:1',
-              'order' => 'requird'
+              'order' => 'required'
         ]);
 
         $task->update($request->all());
